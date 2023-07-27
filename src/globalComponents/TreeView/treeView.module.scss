@@ -1,0 +1,17 @@
+.treeView {
+
+    .header {
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+
+        h3 {
+            color: #b1b1b2;
+        }
+
+        .header__icons {
+            display: flex;
+            gap: 1.6rem;
+        }
+    }
+}
