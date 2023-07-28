@@ -1,0 +1,60 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    &__left, &__right {
+        display: flex;
+        align-items: center;
+        margin: 1.6rem 0;
+        .searchBox {
+            display: flex;
+            flex-wrap: wrap;
+            &__input {
+                border: none;
+                margin-left: 0.8rem;
+            }
+        }
+    }
+
+    &__left {
+        gap: 3.2rem;
+        margin-left: 2.4rem;
+        flex-wrap: wrap;
+
+    }
+
+    &__right {
+        gap: 1.6rem;
+        margin-right: 2.4rem;
+
+        .addMember {
+            position: relative;
+            cursor: pointer;
+            .copy_text {
+                position: absolute;
+                top: -2rem;
+                left: 2rem;
+    
+            }
+        }
+    }
+
+    svg {
+        cursor: pointer;
+    }
+} 
+
+@media screen and (max-width: 450px) {
+    .header {
+        &__left {
+            .searchBox {
+                &__input {
+                    width: 5rem;
+                }
+            }
+        }
+        &__right {
+            height: 1rem;
+        }
+    } 
+}
