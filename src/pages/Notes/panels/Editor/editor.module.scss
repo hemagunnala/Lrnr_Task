@@ -1,42 +1,12 @@
-// .editorContainer {
-//   border: 1px solid #ccc;
-//   padding: 10px;
-//   margin-bottom: 20px;
-// }
-
-// .contentArea {
-//   border: 1px solid #ccc;
-//   padding: 10px;
-//   min-height: 200px;
-//   font-family: 'Arial', sans-serif;
-// }
-.App {
-  font-family: sans-serif;
-  text-align: center;
-  display: block;
+.editorContainer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-/* Override default */
-.Draftail-Toolbar {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Override default */
-.Draftail-Editor {
-  border: none !important;
-  width: 60% !important;
-  margin-top: 100px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Override default */
-.public-DraftEditor-content {
-  font-family: Georgia, "Times New Roman", Times, serif !important;
-}
-
-/* Override default */
-.public-DraftEditorPlaceholder-inner {
-  font-family: Georgia, "Times New Roman", Times, serif !important;
+.contentArea {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 200px;
+  font-family: 'Arial', sans-serif;
 }
