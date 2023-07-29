@@ -8,6 +8,7 @@ import { useTreeData } from './notes.utils';
  * Renders a notes panel with a header, view and editor.
  * Retrieves data from the Redux store and saves it to local storage.
  */
+import Editor from './panels/Editor';
 const Notes = () => {
   useTreeData();
   return (
@@ -15,7 +16,9 @@ const Notes = () => {
       <Header />
       <div className={styles.panel}>
         <View />
-        <div className={styles.temp}><></></div>
+        <div className={styles.temp}>
+          <Editor />
+        </div>
       </div>
     </div>
   );
