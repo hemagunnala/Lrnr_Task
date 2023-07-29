@@ -9,10 +9,16 @@ const Header = () => {
   const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
+  /**
+   * Handle closing the navigation drawer
+   */
   const handleNavDrawerClose = () => {
     setIsNavDrawerOpen(false);
   };
 
+  /**
+   * Copy the current URL to the clipboard
+   */
   const copyLink = () => {
     const currentURL = window.location.href;
     const tempTextArea = document.createElement('textarea');
@@ -26,30 +32,37 @@ const Header = () => {
       setCopied(false);
     }, 2000);
   };
+
   return (
-        <>
-            <div className={styles.header}>
-                <div className={styles.header__left}>
-                    <FontAwesomeIcon icon={faBars} style={{ color: '#757978' }} onClick={() => { setIsNavDrawerOpen(true); }}/>
-                    <div className={styles.searchBox}>
-                        <FontAwesomeIcon icon={faSearch} style={{ color: '#757978' }} size='lg' />
-                        <input type="text" placeholder="dfin" className={styles.searchBox__input} />
-                    </div>
-                </div>
-                <div className={styles.header__right}>
-                    <div className={styles.addMember} onClick={copyLink}>
-                        <div className={styles.content}>
-                            <FontAwesomeIcon icon={faUserPlus} flip="horizontal" style={{ color: '#757978' }} size='xs' />
-                            <span>INVITE TEAM MEMBER</span>
-                        </div>
-                        <div className={styles.copy_text}>{copied ? <span>{'Link Copied'}</span> : ''}</div>
-                    </div>
-                    <FontAwesomeIcon icon={faBell} flip="horizontal" style={{ color: '#757978' }} />
-                    <Profile name='Hema' />
-                </div>
+    <>
+      <div className={styles.header}>
+        <div className={styles.header__left}>
+          <FontAwesomeIcon
+            icon={faBars}
+            style={{ color: '#757978' }}
+            onClick={() => {
+              setIsNavDrawerOpen(true);
+            }}
+          />
+          <div className={styles.searchBox}>
+            <FontAwesomeIcon icon={faSearch} style={{ color: '#757978' }} size="lg" />
+            <input type="text" placeholder="dfin" className={styles.searchBox__input} />
+          </div>
+        </div>
+        <div className={styles.header__right}>
+          <div className={styles.addMember} onClick={copyLink}>
+            <div className={styles.content}>
+              <FontAwesomeIcon icon={faUserPlus} flip="horizontal" style={{ color: '#757978' }} size="xs" />
+              <span>INVITE TEAM MEMBER</span>
             </div>
-            <NavDrawer visible={isNavDrawerOpen} handleNavDrawerClose={handleNavDrawerClose} />
-        </>
+            {copied && <div className={styles.copy_text}>{<span>{'Link Copied'}</span>}</div>}
+          </div>
+          <FontAwesomeIcon icon={faBell} flip="horizontal" style={{ color: '#757978' }} />
+          <Profile name="Hema" />
+        </div>
+      </div>
+      <NavDrawer visible={isNavDrawerOpen} handleNavDrawerClose={handleNavDrawerClose} />
+    </>
   );
 };
 

@@ -2,16 +2,23 @@
     display: flex;
     justify-content: space-between;
 
-    &__left, &__right {
+    &__left,
+    &__right {
         display: flex;
         align-items: center;
         margin: 1.6rem 0;
+
         .searchBox {
             display: flex;
             flex-wrap: wrap;
+
             &__input {
                 border: none;
                 margin-left: 0.8rem;
+
+                &:focus {
+                    border: 1px solid red !important;
+                }
             }
         }
     }
@@ -30,11 +37,14 @@
         .addMember {
             position: relative;
             cursor: pointer;
+
             .copy_text {
                 position: absolute;
-                top: -2rem;
+                top: 2rem;
                 left: 2rem;
-    
+                padding: 1rem;
+                background-color: black;
+                color: white;
             }
         }
     }
@@ -42,7 +52,7 @@
     svg {
         cursor: pointer;
     }
-} 
+}
 
 @media screen and (max-width: 450px) {
     .header {
@@ -53,8 +63,13 @@
                 }
             }
         }
+
         &__right {
             height: 1rem;
         }
-    } 
+    }
+}
+
+input:focus {
+    border: 1px solid red !important;
 }

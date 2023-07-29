@@ -1,20 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+function getNextLevelName (parentName, length, isItem = false) {
+  let content = parentName;
+
+  // If the parent level is an item, replace 'collection' with 'Content Page'
+  if (isItem) {
+    content = parentName.replace('collection', 'Content Page');
+  }
+  // Generate the name for the next level by appending the length + 1 to the parent name
+  return `${content}.${length + 1}`;
+}
+
 const initialState = {
   search: '',
   currentTab: 'All',
-  data: [
-    {
-      name: 'collection.1.1.1',
-      container: [],
-      leafNodes: [
-        {
-          name: 'Content Page 1.1.1.1',
-          content: '<h1>Content Page</h2>'
-        }
-      ]
-    }
-  ]
+  data: [],
+  selectedLeaf: ''
 };
 
 const noteSlice = createSlice({
@@ -29,17 +30,48 @@ const noteSlice = createSlice({
       const { payload } = action;
       state.currentTab = payload;
     },
-    setContainer: (state, action) => {
-      const { con, index } = action.payload;
-      if (index !== null) { state.data[index].container.push(con); } else { state.data.push(con); }
+    setMasterContainer: (state, { payload }) => {
+      state.data.push({
+        name: getNextLevelName('collection.', state.data.length),
+        container: payload?.container || [],
+        leafNodes: payload?.leafNodes || []
+      });
     },
-    setLeaf: (state, action) => {
-      const { con, index } = action.payload;
-      state.data[index].leafNodes.push(con);
+    setContainer: (state, { payload }) => {
+      const findParent = (data) => {
+        if (data.name === payload) {
+          data.container.push({
+            name: getNextLevelName(payload, data?.container?.length),
+            container: [],
+            leafNodes: [
+            ]
+          });
+        } else if (data.container && data.container.length > 0) {
+          for (const item of data.container) {
+            findParent(item);
+          }
+        }
+      };
+      state.data.forEach(findParent);
+    },
+    setItem: (state, { payload }) => {
+      const findParent = (data) => {
+        if (data.name === payload) {
+          data.leafNodes.push({ name: getNextLevelName(payload, data?.leafNodes?.length, true), content: '' });
+        } else if (data.container && data.container.length > 0) {
+          for (const item of data.container) {
+            findParent(item);
+          }
+        }
+      };
+      state.data.forEach(findParent);
+    },
+    setSelectedLeaf: (state, { payload }) => {
+      state.selectedLeaf = payload;
     }
   }
 });
 
-export const { setSearch, setCurrentTab, setContainer, setLeaf } = noteSlice.actions;
+export const { setSearch, setCurrentTab, setContainer, setItem, setMasterContainer, setSelectedLeaf } = noteSlice.actions;
 
 export default noteSlice.reducer;

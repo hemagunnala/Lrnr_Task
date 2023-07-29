@@ -2,13 +2,21 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     .panel {
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: minmax(30rem, 30rem) 1fr;
         gap:0.8rem;
-        height: 100%;
-        .temp {
-            background-color: blue;
-        } 
+        height: 100%; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .notes {
+        .panel {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap:0.8rem;
+        }
     }
 }

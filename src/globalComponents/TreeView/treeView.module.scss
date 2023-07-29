@@ -1,7 +1,14 @@
 .treeView {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    .tree_container {
+        overflow-x: auto;
+    }
 
     .header {
-        padding: 1rem;
+        padding: 2rem 1rem;
         display: flex;
         justify-content: space-between;
 
@@ -13,5 +20,64 @@
             display: flex;
             gap: 1.6rem;
         }
+
+        svg {
+            cursor: pointer;
+        }
     }
+
+    .treeNode {
+
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        gap: 3rem;
+
+        .icons {
+            display: flex;
+            gap: 1.6rem;
+            display: none;
+        }
+
+        &:hover {
+            .icons {
+                display: flex;
+            }
+
+            .copyIcon {
+                display: none;
+            }
+        }
+
+        svg {
+            cursor: pointer;
+        }
+
+    }
+
+
+    :global(.ant-collapse-header) {
+        align-items: center !important;
+        padding-right: 0 !important;
+    }
+
+    .leafNode {
+        font-size: 1.5rem;
+        margin-left: 1.8rem;
+        cursor: pointer;
+
+        .active {
+            border-left: 3px solid #ea5c6c;
+            border-radius: 1px;
+        }
+    }
+
+    :global(.ant-collapse-content-box) {
+        padding: 1.6rem 0 1.6rem 1.6rem !important;
+    }
+}
+
+:global(.ant-tooltip-inner) {
+    padding: 1rem !important;
+    border-radius: unset !important;
 }
