@@ -16,19 +16,28 @@ const menuItems = [
 
 const ProfileDropDown = () => {
   return (
-        <div className={styles.dropDown}>
-            {menuItems.map((item, index) =>
-              item.type === 'separator'
-                ? (
-                    <div className={styles.separator} key={index} />
-                  )
-                : (
-                    <div className={styles['dropDown-item']} key={index}>
-                        {item.text !== 'Dark Mode' ? <span className={styles['dropDown-text']}>{item.text}</span> : <div className={styles.theme}><span className={styles['dropDown-text']}>{item.text}</span><Switch size='small'/></div>}
-                    </div>
-                  )
-            )}
-        </div>
+    <div className={styles.dropDown}>
+      {menuItems.map((item, index) =>
+        item.type === 'separator'
+          ? (
+          <div className={styles.separator} key={index} />
+            )
+          : (
+          <div className={styles['dropDown-item']} key={index}>
+            {item.text !== 'Dark Mode'
+              ? (
+              <span className={styles['dropDown-text']}>{item.text}</span>
+                )
+              : (
+              <div className={styles.theme}>
+                <span className={styles['dropDown-text']}>{item.text}</span>
+                <Switch size="small" />
+              </div>
+                )}
+          </div>
+            )
+      )}
+    </div>
   );
 };
 
